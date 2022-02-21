@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- теги activity_edit -->
+    <style name="background_text_tag_create" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:backgroundTint">@color/tag_create_button_night_color</item>
+        <item name="android:button"> @android:color/transparent</item>
+        <item name="android:background"> @drawable/tag_button</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+    <!-- теги activity_main -->
+    <style name="background_text_tag" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:backgroundTint">@color/tag_button_night_color</item>
+        <item name="android:button"> @android:color/transparent</item>
+        <item name="android:background"> @drawable/tag_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:foregroundTint">@color/tag_button_icon_night</item>
+        <item name="android:foregroundGravity">left|center</item>
+
+
+    </style>
+
+    <style name="tag_clear" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="srcCompat"> @drawable/ic_baseline_cancel_night</item>
+
+
+    </style>
+
+    <!-- круглые кнопки -->
+    <style name="background_text_floating_button" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="backgroundTint"> @color/gray_background</item>
+        <item name="tint"> @color/yellow_background </item>
+
+    </style>
+
+    <!-- Recycler view -->
+    <style name="rc_view_list" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray_background</item>
+
+    </style>
+
+    <style name="rc_view_list_label" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:textColor"> @color/white</item>
+        <item name="android:textColorHint"> @color/gray</item>
+
+    </style>
+
+    <style name="rc_view_list_data" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:textColor"> @color/yellow_background</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+
+    <style name="rc_imageView" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="tint"> @color/yellow_background </item>
+
+
+    </style>
+
+    <!-- задник activity_main -->
+    <style name="activity_main_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray2</item>
+
+    </style>
+
+    <!-- задник activity_main -->
+    <style name="activity_edit_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray2</item>
+
+    </style>
+
+    <!-- поиск -->
+    <style name="activity_main_search_view_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray_background</item>
+        <item name="android:searchIcon"> @drawable/ic_search</item>
+        <item name="android:layout_marginStart"> 0dp</item>
+        <item name="android:layout_marginEnd"> 0dp</item>
+        <item name="android:layout_width"> match_parent</item>
+        <item name="android:layout_height"> 55dp</item>
+
+    </style>
+
+
+
+
+    <!-- иконка при выборе изоброжения -->
+    <style name="activity_edit_image" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="srcCompat"> @drawable/ic_image_night</item>
+
+    </style>
+
+    <!-- окно ввода заголовка -->
+    <style name="activity_edit_label" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/gray</item>
+
+    </style>
+
+    <!-- окно ввода описания -->
+    <style name="activity_edit_content" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="android:background"> @color/gray_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/gray</item>
+
+    </style>
+
+</resources>

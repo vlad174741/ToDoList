@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <group android:checkableBehavior="single"
+        tools:ignore="ExtraText">
+        //группа в которой будут прописаны разделы меню//
+
+        //один из разделов меню. его настройка осуществляется с помощью ресурсов из папки (res)//
+
+
+        <item
+            android:id="@+id/id_menu_home_work"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/Settings" />
+
+
+
+
+    </group>
+</menu>
