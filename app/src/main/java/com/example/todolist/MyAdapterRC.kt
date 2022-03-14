@@ -87,11 +87,12 @@ class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun removeItem(pos:Int, dbManager: DbManagerClass){
 
+        notifyDataSetChanged()
         dbManager.removeItemToDb(listArray[pos].idLI. toString())
         listArray.removeAt(pos)
-        notifyItemRangeChanged(0,listArray.size)
         notifyItemRemoved(pos)
     }
 

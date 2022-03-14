@@ -143,7 +143,7 @@
                     android:visibility="gone" />
 
                 <RadioButton
-                    android:id="@+id/check_tag_other"
+                    android:id="@+id/check_tag_sport"
 
                     style="@style/background_text_tag"
                     android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                     app:layout_constraintStart_toEndOf="@id/check_tag_work" />
 
                 <ImageButton
-                    android:id="@+id/clear_other"
+                    android:id="@+id/clear_sport"
                     style="@style/tag_clear"
                     android:layout_width="20dp"
                     android:layout_height="20dp"

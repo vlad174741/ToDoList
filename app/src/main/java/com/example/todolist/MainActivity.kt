@@ -1,5 +1,6 @@
 package com.example.todolist
 
+import android.annotation.SuppressLint
 import dataBase.DbManagerClass
 import android.content.Context
 import android.content.Intent
@@ -12,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -27,12 +29,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val dbManager = DbManagerClass(this)
     val myAdapter = MyAdapterRC(ArrayList(), this)
 
-    private var tagHome = Tags().homeTag
-    private var tagShop = Tags().shopTag
-    private var tagWork = Tags().workTag
-    private var tagWeekend = Tags().weekendTag
-    private var tagBank = Tags().bankTag
-    private var tagOther = Tags().sportTag
+    //Пременные для тегов//
+    private val tag = Tags()
     private var clear = 0
 
     //Пременные для удаления заметок//
@@ -84,6 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         themeChange()
         init()
         searchView()
+        clearSearchView()
         chekItem(""); chekItemTag()
         saveDataTheme(themeSet)
         saveDataDelete(deleteSet)
@@ -180,7 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun searchView() {
 
-        clearSearchView()
+        if(myAdapter.itemCount==0){clearSearchView()}
         search_view_main.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(text: String?): Boolean {
@@ -190,6 +189,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onQueryTextChange(text: String?): Boolean {
                 rd1.clearCheck(); clearButtonGone()
                 chekItem(text!!)
+
                 return true
 
             }
@@ -226,7 +226,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     //Функция для кнопки удаления НЕТ//
+    @SuppressLint("NotifyDataSetChanged")
     fun deleteNo(@Suppress("UNUSED_PARAMETER") view: View) {
+        myAdapter.notifyDataSetChanged()
         del = false; con = 999; yesOrNoGone()
     }
 
@@ -271,12 +273,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     if (del)
                     { myAdapter.removeItem(viewHolder.adapterPosition, dbManager)
-                        chekItem(""); chekItemTag()
-                        run = false; timer?.cancel() }
+                        searchView()
+                        run = false; timer?.cancel()
 
-                    else { chekItem("");chekItemTag()
-                        del = false; run = false; timer?.cancel() }
-                }
+                        if(myAdapter.itemCount==0) { tv_no_elements.visibility = View.VISIBLE }
+                        else { tv_no_elements.visibility = View.GONE }}
+
+                    else { searchView(); del = false; run = false; timer?.cancel() } }
 
                 fun startStop() {
                     timer = Timer(); timer?.schedule(object : TimerTask() {
@@ -321,8 +324,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         check_tag_bank.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
         { check_tag_bank.isClickable=false; clear = 0;chekItemTag();clearSearchView() })
 
-        check_tag_other.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-        { check_tag_other.isClickable=false; clear = 0; chekItemTag();clearSearchView() })
+        check_tag_sport.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+        { check_tag_sport.isClickable=false; clear = 0; chekItemTag();clearSearchView() })
 
 
         clear_home.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener {
@@ -351,9 +354,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             clear_bank.visibility = (View.GONE); handler.postDelayed({rcViewUp()}, 30)
         })
 
-        clear_other.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener {
-            clear_other.isClickable=false; clear = 6; chekItemTag();rd1.clearCheck()
-            clear_other.visibility = (View.GONE); handler.postDelayed({rcViewUp()}, 30)
+        clear_sport.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener {
+            clear_sport.isClickable=false; clear = 6; chekItemTag();rd1.clearCheck()
+            clear_sport.visibility = (View.GONE); handler.postDelayed({rcViewUp()}, 30)
         })
     }
 
@@ -364,7 +367,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         clear_work.visibility = (View.GONE); check_tag_work.isClickable=true
         clear_weekend.visibility = (View.GONE); check_tag_weekend.isClickable=true
         clear_bank.visibility = (View.GONE); check_tag_bank.isClickable=true
-        clear_other.visibility = (View.GONE); check_tag_other.isClickable=true
+        clear_sport.visibility = (View.GONE); check_tag_sport.isClickable=true
     }
 
 
@@ -373,23 +376,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var textTag = ""
 
 
-        if (check_tag_home.isChecked) { textTag = tagHome; clear_home.visibility = (View.VISIBLE) }
+        if (check_tag_home.isChecked) { textTag = tag.homeTag; clear_home.visibility = (View.VISIBLE) }
         else { clear_home.visibility = (View.GONE); check_tag_home.isClickable=true }
 
-        if (check_tag_shop.isChecked) { textTag = tagShop; clear_shop.visibility = (View.VISIBLE) }
+        if (check_tag_shop.isChecked) { textTag = tag.shopTag; clear_shop.visibility = (View.VISIBLE) }
         else { clear_shop.visibility = (View.GONE); check_tag_shop.isClickable=true }
 
-        if (check_tag_work.isChecked) { textTag = tagWork; clear_work.visibility = (View.VISIBLE) }
+        if (check_tag_work.isChecked) { textTag = tag.workTag; clear_work.visibility = (View.VISIBLE) }
         else { clear_work.visibility = (View.GONE); check_tag_work.isClickable=true }
 
-        if (check_tag_weekend.isChecked) { textTag = tagWeekend; clear_weekend.visibility = (View.VISIBLE) }
+        if (check_tag_weekend.isChecked) { textTag = tag.weekendTag; clear_weekend.visibility = (View.VISIBLE) }
         else { clear_weekend.visibility = (View.GONE); check_tag_weekend.isClickable=true }
 
-        if (check_tag_bank.isChecked) { textTag = tagBank; clear_bank.visibility = (View.VISIBLE) }
+        if (check_tag_bank.isChecked) { textTag = tag.bankTag; clear_bank.visibility = (View.VISIBLE) }
         else { clear_bank.visibility = (View.GONE); check_tag_bank.isClickable=true }
 
-        if (check_tag_other.isChecked) { textTag = tagOther; clear_other.visibility = (View.VISIBLE) }
-        else { clear_other.visibility = (View.GONE); check_tag_other.isClickable=true }
+        if (check_tag_sport.isChecked) { textTag = tag.sportTag; clear_sport.visibility = (View.VISIBLE) }
+        else { clear_sport.visibility = (View.GONE); check_tag_sport.isClickable=true }
 
 
         if (clear == 1) { textTag = ""; check_tag_home.isClickable=true }
@@ -411,8 +414,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         else{clear_bank.isClickable=true}
 
 
-        if (clear == 6) { textTag = ""; check_tag_other.isClickable=true }
-        else{clear_other.isClickable=true}
+        if (clear == 6) { textTag = ""; check_tag_sport.isClickable=true }
+        else{clear_sport.isClickable=true}
 
 
 

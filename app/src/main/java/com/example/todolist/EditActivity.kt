@@ -20,13 +20,8 @@ class EditActivity : AppCompatActivity() {
     var id = 0
     private var isEditState = false
     private val dbManager = DbManagerClass(this)
-    private var checkHome = ""
-    private var checkShop = ""
-    private var checkWork = ""
-    private var checkWeekend = ""
-    private var checkBank = ""
-    private var checkOther = ""
     private var tagIntent = "empty"
+    private val tag = Tags()
 
 
     private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -176,22 +171,22 @@ class EditActivity : AppCompatActivity() {
     private fun tagClick(){
 
         check_get_teg_home.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_home.isChecked){ tagIntent = Tags().homeTag } else { checkHome ="" } })
+            if (check_get_teg_home.isChecked){ tagIntent = tag.homeTag } else { tag.homeTag ="" } })
 
         check_get_teg_shop.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_shop.isChecked){ tagIntent = Tags().shopTag } else { checkShop = "" } })
+            if (check_get_teg_shop.isChecked){ tagIntent = tag.shopTag } else { tag.shopTag = "" } })
 
         check_get_teg_work.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_work.isChecked){ tagIntent = Tags().workTag } else { checkWork = "" } })
+            if (check_get_teg_work.isChecked){ tagIntent = tag.workTag } else { tag.workTag = "" } })
 
         check_get_tag_weekend.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_tag_weekend.isChecked){ tagIntent = Tags().weekendTag } else { checkWeekend = "" } })
+            if (check_get_tag_weekend.isChecked){ tagIntent = tag.weekendTag } else { tag.weekendTag = "" } })
 
         check_get_tag_bank.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_tag_bank.isChecked){ tagIntent = Tags().bankTag } else { checkBank = "" } })
+            if (check_get_tag_bank.isChecked){ tagIntent = tag.bankTag } else { tag.bankTag = "" } })
 
         check_get_tag_other.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_tag_other.isChecked){ tagIntent = Tags().sportTag } else { checkOther = "" } })
+            if (check_get_tag_other.isChecked){ tagIntent = tag.sportTag } else { tag.sportTag = "" } })
     }
 
     fun onClickAddTag(@Suppress("UNUSED_PARAMETER")view: View) {
