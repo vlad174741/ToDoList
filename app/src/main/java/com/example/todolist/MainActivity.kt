@@ -13,7 +13,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -372,7 +371,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     //Функция для проверки и выбора тега, а так же выбора заметок принадлежащих этому тегу//
-    fun chekItemTag() {
+    private fun chekItemTag() {
         var textTag = ""
 
 
