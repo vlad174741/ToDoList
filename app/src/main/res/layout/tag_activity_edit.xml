@@ -21,7 +21,7 @@
 
 
         <RadioButton
-            android:id="@+id/check_get_teg_home"
+            android:id="@+id/check_get_tag_home"
             style="@style/background_text_tag_create"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -32,7 +32,7 @@
             tools:layout_editor_absoluteY="162dp" />
 
         <RadioButton
-            android:id="@+id/check_get_teg_shop"
+            android:id="@+id/check_get_tag_shop"
 
             style="@style/background_text_tag_create"
             android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
             tools:layout_editor_absoluteY="162dp" />
 
         <RadioButton
-            android:id="@+id/check_get_teg_work"
+            android:id="@+id/check_get_tag_work"
 
             style="@style/background_text_tag_create"
             android:layout_width="wrap_content"

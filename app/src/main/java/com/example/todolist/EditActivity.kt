@@ -50,7 +50,7 @@ class EditActivity : AppCompatActivity() {
         tagClick()
         ed_img_but.isClickable=true
         action_button_img.isClickable=true
-
+        ifElseCheck()
 
     }
 
@@ -170,14 +170,14 @@ class EditActivity : AppCompatActivity() {
 
     private fun tagClick(){
 
-        check_get_teg_home.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_home.isChecked){ tagIntent = tag.homeTag } else { tag.homeTag ="" } })
+        check_get_tag_home.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
+            if (check_get_tag_home.isChecked){ tagIntent = tag.homeTag } else { tag.homeTag ="" } })
 
-        check_get_teg_shop.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_shop.isChecked){ tagIntent = tag.shopTag } else { tag.shopTag = "" } })
+        check_get_tag_shop.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
+            if (check_get_tag_shop.isChecked){ tagIntent = tag.shopTag } else { tag.shopTag = "" } })
 
-        check_get_teg_work.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
-            if (check_get_teg_work.isChecked){ tagIntent = tag.workTag } else { tag.workTag = "" } })
+        check_get_tag_work.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
+            if (check_get_tag_work.isChecked){ tagIntent = tag.workTag } else { tag.workTag = "" } })
 
         check_get_tag_weekend.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener {
             if (check_get_tag_weekend.isChecked){ tagIntent = tag.weekendTag } else { tag.weekendTag = "" } })
@@ -205,6 +205,20 @@ class EditActivity : AppCompatActivity() {
 
     }
 
+    private fun ifElseCheck(){
+        //Проверка выбранных тегов//
+        if (tagIntent == tag.homeTag){ check_get_tag_home.isChecked = true }
+        if (tagIntent == tag.shopTag){ check_get_tag_shop.isChecked = true }
+        if (tagIntent == tag.workTag){ check_get_tag_work.isChecked = true }
+        if (tagIntent == tag.weekendTag){ check_get_tag_weekend.isChecked = true }
+        if (tagIntent == tag.bankTag){ check_get_tag_bank.isChecked = true }
+        if (tagIntent == tag.sportTag){ check_get_tag_other.isChecked = true }
+
+    }
+
+
+
+
     //Обработка нажатий на поле ввода текста, для открытия и закрытия клавиатуры//
     //  fun closeEditTextTitle(view: android.view.View) {closeKeyboardTitle();ed_title.isEnabled=true}
     //  fun closeEditTextContent(view: android.view.View) {closeKeyboardContent();ed_content.isEnabled=true;ed_title.isEnabled=true}
@@ -214,7 +228,6 @@ class EditActivity : AppCompatActivity() {
 
     //Закрытие окна//
     override fun onDestroy() { super.onDestroy(); dbManager.closeDB() }
-
 
 
 }
