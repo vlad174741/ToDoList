@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="auth_background" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background"> @color/white</item>
+
+    </style>
+
+    <style name="auth_edit_text" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background"> @color/purple_200</item>
+        <item name="android:textColor">@color/gray_background</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">200dp</item>
+    </style>
+
+
+    <style name="auth_button" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:backgroundTint"> @color/purple_200</item>
+        <item name="android:textColor">@color/gray_background</item>
+    </style>
+
     <!-- теги activity_edit -->
     <style name="background_text_tag_create" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 

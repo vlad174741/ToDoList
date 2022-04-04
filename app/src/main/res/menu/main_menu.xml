@@ -11,9 +11,14 @@
 
 
         <item
-            android:id="@+id/id_menu_home_work"
+            android:id="@+id/id_menu_settings"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/Settings" />
+
+        <item
+            android:id="@+id/id_menu_logOut"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/logout" />
 
 
 

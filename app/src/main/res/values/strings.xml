@@ -21,6 +21,11 @@
     <string name="No">Нет</string>
     <string name="Message_about_delete">Уведомление при удаление заметки</string>
     <string name="sport">Спорт</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="registration">Зарегестрироваться</string>
+    <string name="sing_in">Войти</string>
+    <string name="logout">Выйти</string>
 
 
     <string-array name="title"
