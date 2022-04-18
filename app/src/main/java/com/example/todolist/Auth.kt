@@ -19,6 +19,7 @@ class Auth: AppCompatActivity() {
     private var prefsPass: SharedPreferences? = null
     private var prefsTheme: SharedPreferences? = null
     private var themeSet = 4
+    val save = SaveData()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +41,10 @@ class Auth: AppCompatActivity() {
         authorization()
         themeChange()
 
+
     }
     @OptIn(DelicateCoroutinesApi::class)
     fun  authorization() {
-
         val edLogin = findViewById<EditText>(R.id.editText_login)
         val edPass = findViewById<EditText>(R.id.editText_password)
         val main = Intent(this, MainActivity::class.java)
@@ -76,27 +77,13 @@ class Auth: AppCompatActivity() {
         button_reg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
         {
             login = edLogin.text.toString()
-            saveDataAuth(login)
+            save.saveDataString(login,prefsAuth,"auth")
             pass = edPass.text.toString()
-            saveDataPass(pass)
+            save.saveDataString(pass,prefsPass,"pass")
+
 
 
         })
-
-    }
-    private fun saveDataAuth(resAuth: String) {
-
-        val editorAuth = prefsAuth?.edit()
-        editorAuth?.putString("auth", resAuth)
-        editorAuth?.apply()
-
-    }
-
-    private fun saveDataPass(resPass: String) {
-
-        val editorPass = prefsPass?.edit()
-        editorPass?.putString("pass", resPass)
-        editorPass?.apply()
 
     }
 
@@ -116,13 +103,7 @@ class Auth: AppCompatActivity() {
             delegate.applyDayNight()
         }
     }
-    //Функция для сохранение настроек темы//
-    private fun saveDataTheme(res: Int) {
 
-        val editor = prefsTheme?.edit()
-        editor?.putInt("settings", res)
-        editor?.apply()
 
-    }
 
 }

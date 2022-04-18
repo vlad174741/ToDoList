@@ -20,16 +20,21 @@ class Option : AppCompatActivity() {
     private var deleteSet  = 1
     private var prefsTheme: SharedPreferences?=null
     private var prefsDelete: SharedPreferences?=null
+    private val save = SaveData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_option)
 
         //Сохранение настроек//
-        prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
+        fun saveTheme(res:Int){ save.saveDataInt(res,prefsTheme,"settingsTheme") }
+        fun saveDelete(res:Int){ save.saveDataInt(res,prefsDelete,"settingsDelete") }
+
         prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
-        themeSet=prefsTheme?.getInt("settingsTheme",0)!!
         deleteSet=prefsDelete?.getInt("settingsDelete",0)!!
+
+        prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
+        themeSet=prefsTheme?.getInt("settingsTheme",0)!!
 
         //Предача настроек в главное Activity//
         intent.getIntExtra("classTheme", themeSet)
@@ -37,26 +42,27 @@ class Option : AppCompatActivity() {
 
         //Проверка выбранных настроек//
         ifElseCheck()
-        //text()
+        text()
+
 
         //Кнопка выхода из настройки//
         imageButton.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
         { val option = Intent(this, MainActivity::class.java); startActivity(option)
-            saveData(themeSet);saveDataDelete(deleteSet) })
+            saveTheme(themeSet);saveDelete(deleteSet) })
 
         //Настройки темы//
         button_system_theme.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_system_theme.isChecked){themeSet=0; saveData(themeSet); themeChange()} })
+        {if (button_system_theme.isChecked){themeSet=0; saveTheme(0);text(); themeChange()} })
         button_dark_theme.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_dark_theme.isChecked){themeSet=1; saveData(themeSet); themeChange()} })
+        {if (button_dark_theme.isChecked){ themeSet=1; saveTheme(1);text(); themeChange()} })
         button_light_theme.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_light_theme.isChecked){themeSet=2; saveData(themeSet); themeChange()} })
+        {if (button_light_theme.isChecked){themeSet=2; saveTheme(2);text(); themeChange()} })
 
         //Настройки удаление//
         button_option_delete_yes.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_option_delete_yes.isChecked){deleteSet=1;saveDataDelete(deleteSet) }  })
+        {if (button_option_delete_yes.isChecked){deleteSet=1; text(); saveDelete(1) }  })
         button_option_delete_no.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        { if (button_option_delete_no.isChecked){deleteSet=0;saveDataDelete(deleteSet) }  })
+        { if (button_option_delete_no.isChecked){deleteSet=0; text(); saveDelete(0) }  })
     }
 
     //Функция для проверки значения переменных в настройках//
@@ -71,22 +77,6 @@ class Option : AppCompatActivity() {
             delegate.applyDayNight()}
         if (themeSet==2){  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             delegate.applyDayNight()}
-    }
-
-    //Функция для сохранения переменной настройки темы//
-    private fun saveData(resSave:Int){
-
-        val editor = prefsTheme?.edit()
-        editor?.putInt("settingsTheme",resSave)
-        editor?.apply()
-    }
-
-    //Функция для сохранения переменной настройки удаления//
-    private fun saveDataDelete(resDel:Int){
-
-        val editorDelete = prefsDelete?.edit()
-        editorDelete?.putInt("settingsDelete",resDel)
-        editorDelete?.apply()
     }
 
     //Функция для проверки выбранных настроек//
