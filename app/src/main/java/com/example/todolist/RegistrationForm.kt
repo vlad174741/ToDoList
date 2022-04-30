@@ -36,7 +36,7 @@ class RegistrationForm: AppCompatActivity() {
 
 
 
-        //Сохранение настроек темы..//
+        //Сохранение настроек темы//
         intent.putExtra("classTheme", themeSet)
 
         prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
