@@ -51,12 +51,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.main_menu_drawer)
         nav_view_menu.setNavigationItemSelectedListener(this)
+
+
 
 
         //Принятие значений переменных с экрана Option//
@@ -83,7 +87,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         super.onResume()
         dbManager.openDb()
-        themeChange()
         init()
         searchView()
         clearSearchView()
@@ -93,42 +96,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    //Функция для изменения темы//
-    private fun themeChange() {
-
-        if (themeSet == 0) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            delegate.applyDayNight()
-
-        }
-        if (themeSet == 1) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            delegate.applyDayNight()
-        }
-        if (themeSet == 2) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            delegate.applyDayNight()
-        }
-
-        add_button.visibility = (View.VISIBLE)
-        add_button2.visibility = (View.GONE)
-
-
-    }
-
     //Меню//
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         val option = Intent(this, Option::class.java)
+        val reg = Intent(this, RegistrationForm::class.java)
         val logout = Intent(this, Auth::class.java)
 
         when (item.itemId) {
             R.id.id_menu_settings -> {
                 startActivity(option)
             }
+
+            R.id.id_menu_reg -> {
+                finish()
+                startActivity(reg)
+            }
+
             R.id.id_menu_logOut -> {
                 finish()
                 startActivity(logout)
+
             }
         }
         return true
@@ -151,6 +139,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val swapHelper = getSwap()
         swapHelper.attachToRecyclerView(rc_view)
         rc_view.setHasFixedSize(true)
+
+        add_button.visibility = (View.VISIBLE)
+        add_button2.visibility = (View.GONE)
 
 
     }

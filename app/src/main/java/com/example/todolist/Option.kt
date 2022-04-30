@@ -22,6 +22,7 @@ class Option : AppCompatActivity() {
     private var prefsDelete: SharedPreferences?=null
     private val save = SaveData()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_option)
@@ -69,15 +70,7 @@ class Option : AppCompatActivity() {
     fun text(){textView.text=themeSet.toString();textView8.text=deleteSet.toString()}
 
     //Функция для изменения темы//
-    private fun themeChange(){
-
-        if (themeSet==0){  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            delegate.applyDayNight()}
-        if (themeSet==1){  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            delegate.applyDayNight()}
-        if (themeSet==2){  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            delegate.applyDayNight()}
-    }
+    private fun themeChange(){ val theme = ChangeTheme();theme.themeChange(themeSet,delegate)}
 
     //Функция для проверки выбранных настроек//
     private fun ifElseCheck(){
