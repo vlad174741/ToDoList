@@ -12,7 +12,6 @@ import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView

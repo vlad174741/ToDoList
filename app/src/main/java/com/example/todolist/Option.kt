@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.delete_activity_option.*
 import kotlinx.android.synthetic.main.theme_activity_option.*
