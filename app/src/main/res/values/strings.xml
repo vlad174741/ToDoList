@@ -26,6 +26,10 @@
     <string name="registration">Зарегестрироваться</string>
     <string name="sing_in">Войти</string>
     <string name="logout">Выйти</string>
+    <string name="Without_reg">Войти без регистрации</string>
+    <string name="InputOldLogin">Введите стары логин</string>
+    <string name="InputOldPass">Введите старый пороль</string>
+    <string name="ChangePass">Сменить пароль</string>
 
 
     <string-array name="title"

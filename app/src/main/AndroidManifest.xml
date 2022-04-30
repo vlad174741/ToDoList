@@ -19,6 +19,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".RegistrationForm"
+            android:exported="false" />
+        <activity
             android:name=".Auth"
             android:exported="true">
             <intent-filter>

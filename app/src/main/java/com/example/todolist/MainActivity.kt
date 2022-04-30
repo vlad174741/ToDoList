@@ -5,21 +5,18 @@ import dataBase.DbManagerClass
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.authorization.*
 import kotlinx.android.synthetic.main.main_menu_drawer.*
 import kotlinx.android.synthetic.main.tag_main_activity.*
 import kotlinx.coroutines.*
@@ -49,6 +46,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var prefsDelete: SharedPreferences? = null
 
     private val handler = Handler(Looper.getMainLooper())
+    private var save = SaveData()
+
+
 
 
 
@@ -57,22 +57,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         super.onCreate(savedInstanceState)
 
-            setContentView(R.layout.main_menu_drawer)
-            nav_view_menu.setNavigationItemSelectedListener(this)
+        setContentView(R.layout.main_menu_drawer)
+        nav_view_menu.setNavigationItemSelectedListener(this)
 
 
 
-
-        //Сохранение настроек темы//
-        prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
-        themeSet = prefsTheme?.getInt("settingsTheme", 0)!!
-        //Сохранение настроек удаления//
-        prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
-        deleteSet = prefsDelete?.getInt("settingsDelete", 0)!!
 
         //Принятие значений переменных с экрана Option//
         intent.putExtra("classTheme", themeSet)
         intent.putExtra("classDelete", deleteSet)
+
+        //Сохранение настроек темы//
+        save.saveDataInt(themeSet,prefsTheme,"settingsTheme")
+
+        prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
+        themeSet = prefsTheme?.getInt("settingsTheme", 0)!!
+        //Сохранение настроек удаления//
+        save.saveDataInt(deleteSet,prefsDelete,"settingsDelete")
+
+        prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
+        deleteSet = prefsDelete?.getInt("settingsDelete", 0)!!
+
+
 
     }
 
@@ -80,63 +86,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onResume() {
 
         super.onResume()
-            dbManager.openDb()
-            themeChange()
-            init()
-            searchView()
-            clearSearchView()
-            chekItem(""); chekItemTag()
-            saveDataTheme(themeSet)
-            saveDataDelete(deleteSet)
-            checkDelete()
-            tagClick()
-
-
-
-
-
-    }
-
-
-    //Функция для сохранение настроек темы//
-    private fun saveDataTheme(res: Int) {
-
-        val editor = prefsTheme?.edit()
-        editor?.putInt("settings", res)
-        editor?.apply()
-
-    }
-
-    //Функция для сохранение настроек удаления//
-    private fun saveDataDelete(resDel: Int) {
-
-        val editorDelete = prefsDelete?.edit()
-        editorDelete?.putInt("settingsDelete", resDel)
-        editorDelete?.apply()
-
-    }
-
-
-    //Функция для изменения темы//
-    private fun themeChange() {
-
-        if (themeSet == 0) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            delegate.applyDayNight()
-
-        }
-        if (themeSet == 1) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            delegate.applyDayNight()
-        }
-        if (themeSet == 2) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            delegate.applyDayNight()
-        }
-
-        add_button.visibility = (View.VISIBLE)
-        add_button2.visibility = (View.GONE)
-
+        dbManager.openDb()
+        init()
+        searchView()
+        clearSearchView()
+        chekItem(""); chekItemTag()
+        checkDelete()
+        tagClick()
 
     }
 
@@ -144,15 +100,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         val option = Intent(this, Option::class.java)
+        val reg = Intent(this, RegistrationForm::class.java)
         val logout = Intent(this, Auth::class.java)
 
         when (item.itemId) {
             R.id.id_menu_settings -> {
                 startActivity(option)
             }
+
+            R.id.id_menu_reg -> {
+                finish()
+                startActivity(reg)
+            }
+
             R.id.id_menu_logOut -> {
                 finish()
                 startActivity(logout)
+
             }
         }
         return true
@@ -175,6 +139,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val swapHelper = getSwap()
         swapHelper.attachToRecyclerView(rc_view)
         rc_view.setHasFixedSize(true)
+
+        add_button.visibility = (View.VISIBLE)
+        add_button2.visibility = (View.GONE)
 
 
     }
@@ -448,8 +415,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //Закрытие окна//
     override fun onDestroy() { super.onDestroy() ; dbManager.closeDB()}
-    fun reg(view: View) {}
-    fun singIn(view: View) {}
 
 }
 
