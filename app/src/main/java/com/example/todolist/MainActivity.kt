@@ -1,6 +1,7 @@
 package com.example.todolist
 
 import android.annotation.SuppressLint
+import android.content.ClipData
 import dataBase.DbManagerClass
 import android.content.Context
 import android.content.Intent
@@ -9,10 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Layout
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.appcompat.view.menu.MenuItemImpl
+import androidx.appcompat.view.menu.MenuView
+import androidx.appcompat.widget.MenuItemHoverListener
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -27,6 +35,7 @@ import kotlin.collections.ArrayList
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     val dbManager = DbManagerClass(this)
     val myAdapter = MyAdapterRC(ArrayList(), this)
+    val save = SaveData()
 
     //Пременные для тегов//
     private val tag = Tags()
@@ -42,15 +51,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //Перемнные для сохранения параметров настроек//
     private var themeSet = 4
     private var deleteSet = 1
+    private var authWithoutRegSet = 0
+
     private var prefsTheme: SharedPreferences? = null
     private var prefsDelete: SharedPreferences? = null
+    private var prefsAuthWithoutReg: SharedPreferences? = null
+
 
     private val handler = Handler(Looper.getMainLooper())
-    private var save = SaveData()
-
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,22 +69,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view_menu.setNavigationItemSelectedListener(this)
 
 
-
-
-        //Принятие значений переменных с экрана Option//
-        intent.putExtra("classTheme", themeSet)
-        intent.putExtra("classDelete", deleteSet)
-
         //Сохранение настроек темы//
-        save.saveDataInt(themeSet,prefsTheme,"settingsTheme")
-
         prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
         themeSet = prefsTheme?.getInt("settingsTheme", 0)!!
         //Сохранение настроек удаления//
-        save.saveDataInt(deleteSet,prefsDelete,"settingsDelete")
-
         prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
         deleteSet = prefsDelete?.getInt("settingsDelete", 0)!!
+
+        prefsAuthWithoutReg = getSharedPreferences("settingsAuthWithoutReg", Context.MODE_PRIVATE)
+        authWithoutRegSet = prefsAuthWithoutReg?.getInt("settingsAuthWithoutReg", 0)!!
 
 
 
@@ -93,7 +94,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         chekItem(""); chekItemTag()
         checkDelete()
         tagClick()
-
     }
 
     //Меню//
@@ -109,14 +109,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.id_menu_reg -> {
+                save.saveDataInt(0,prefsAuthWithoutReg,"settingsAuthWithoutReg")
                 finish()
                 startActivity(reg)
             }
 
             R.id.id_menu_logOut -> {
+                save.saveDataInt(0,prefsAuthWithoutReg,"settingsAuthWithoutReg")
                 finish()
                 startActivity(logout)
-
             }
         }
         return true
@@ -221,7 +222,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun manyDelCancel(@Suppress("UNUSED_PARAMETER") view: View) { many = false; del = false
         button_del_cancel.visibility = (View.GONE)
         add_button.visibility = (View.VISIBLE) }
-
     //Функция для вызова контекстного окна удаления//
     fun yesOrNoVisible() { background_delete_window.visibility = (View.VISIBLE)
         delete_window_main_activity.visibility = (View.VISIBLE) }

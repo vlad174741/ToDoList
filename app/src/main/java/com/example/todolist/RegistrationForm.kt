@@ -9,10 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import kotlinx.android.synthetic.main.reg_form.*
-import java.security.AllPermission
-import kotlin.system.exitProcess
 
 class RegistrationForm: AppCompatActivity() {
 
@@ -23,7 +19,6 @@ class RegistrationForm: AppCompatActivity() {
     private var prefsTheme: SharedPreferences? = null
     private var themeSet = 4
     private val save = SaveData()
-    var j = MainActivity()
 
 
 

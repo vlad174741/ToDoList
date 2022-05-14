@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/ic_border_delete_window">
+    style="@style/background_color_delete_dialog"
+    >
 
     <TextView
         android:id="@+id/textView6"
+        style="@style/text_color_option_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="Вы действительно хотите \n удалить заметку?"
-        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,23 +25,23 @@
 
     <Button
         android:id="@+id/button_delete_yes"
+        style="@style/auth_button"
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/yellow_background"
         android:onClick="deleteYes"
         android:text="Да"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:ignore="UsingOnClickInXml" />
+         />
 
     <Button
         android:id="@+id/button_delete_no"
+        style="@style/auth_button"
         android:layout_width="65dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/yellow_background"
         android:onClick="deleteNo"
         android:text="Нет"
         android:textSize="14sp"
@@ -50,14 +51,14 @@
 
     <Button
         android:id="@+id/button_delete_several"
+        style="@style/auth_button"
         android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/yellow_background"
         android:onClick="deleteMany"
         android:text="Удалить несколько"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />

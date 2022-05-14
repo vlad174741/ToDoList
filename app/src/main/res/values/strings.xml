@@ -30,6 +30,7 @@
     <string name="InputOldLogin">Введите стары логин</string>
     <string name="InputOldPass">Введите старый пороль</string>
     <string name="ChangePass">Сменить пароль</string>
+    <string name="login_PIN">Вход через ПИН код</string>
 
 
     <string-array name="title"
