@@ -43,7 +43,7 @@
 
 
         <RadioButton
-            android:id="@+id/button_option_inAuto_yes"
+            android:id="@+id/button_option_PIN_yes"
 
             style="@style/background_text_tag"
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
 
 
         <RadioButton
-            android:id="@+id/button_option_inAuto_no"
+            android:id="@+id/button_option_PIN_no"
 
             style="@style/background_text_tag"
             android:layout_width="wrap_content"
@@ -64,6 +64,21 @@
             android:layout_marginStart="8dp"
             android:gravity="center"
             android:text="@string/No"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/check_tag_work"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/button_option_PIN_change"
+
+            style="@style/background_text_tag"
+            android:layout_width="103dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/change_PIN"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/check_tag_work"
             tools:ignore="TouchTargetSizeCheck" />

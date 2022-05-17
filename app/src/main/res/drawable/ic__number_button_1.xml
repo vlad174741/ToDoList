@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="40"
+    android:viewportHeight="40">
+  <path
+      android:pathData="M20,20m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+      android:fillColor="@color/single_color_2"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M20,20m-19.5,0a19.5,19.5 0,1 1,39 0a19.5,19.5 0,1 1,-39 0"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/pin_button"/>
+
+  <path
+      android:pathData="M16.6992,16.7598C16.6146,16.5514 16.6927,16.4017 16.9336,16.3105C17.4349,16.1217 17.9102,15.819 18.3594,15.4023C18.8086,14.9857 19.1634,14.6146 19.4238,14.2891C19.6126,14.0547 19.7949,13.9375 19.9707,13.9375H20.8008C21.1003,13.9375 21.25,14.084 21.25,14.377V27.5605C21.25,27.8535 21.1035,28 20.8105,28H19.9707C19.6777,28 19.5312,27.8535 19.5312,27.5605V16.8574C19.5312,16.6621 19.5378,16.4668 19.5508,16.2715H19.5312C19.3294,16.5254 19.0332,16.7858 18.6426,17.0527C18.252,17.3197 17.8939,17.515 17.5684,17.6387C17.2819,17.7493 17.0931,17.6973 17.002,17.4824L16.6992,16.7598Z"
+      android:fillColor="@color/single_color"/>
+</vector>

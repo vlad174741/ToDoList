@@ -6,6 +6,18 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable-v24/ic_border_delete_window.xml" value="0.2703125" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable-v24/ic_border_delete_window_light.xml" value="0.253" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable-v24/ic_border_option.xml" value="0.2703125" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_0.xml" value="0.245" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_1.xml" value="0.245" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_2.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_3.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_4.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_5.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_6.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_7.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_8.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_9.xml" value="0.253" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_no.xml" value="0.245" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic__number_button_ok.xml" value="0.245" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_add2.xml" value="0.3828125" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_add_image.xml" value="0.3828125" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.3828125" />
@@ -18,26 +30,34 @@
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_border_list.xml" value="0.3828125" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_border_tag.xml" value="0.3828125" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_content_border.xml" value="0.3828125" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_line.xml" value="0.245" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_line_svg.xml" value="0.245" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_tag2.xml" value="0.1245" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_tag3.xml" value="0.1245" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/tag_button_backgrund_light.xml" value="0.1245" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/tag_button_create_backgrund_light.xml" value="0.1245" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/auth_PIN_form.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/auth_pin_form.xml" value="0.264" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/delete_dialog_window_ligh.xml" value="0.264" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/login_pin_activity_option.xml" value="0.4" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/login_pin_dialog_window.xml" value="0.19021739130434784" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout-v23/tag_main_activity.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_edit.xml" value="0.2" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.32779456193353473" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_option.xml" value="0.4" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/auth_pin_form.xml" value="0.264" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_option.xml" value="0.264" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/auth.xml" value="0.264" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/auth_pin_form.xml" value="0.176" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/authorization.xml" value="0.264" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/delete_activity_option.xml" value="0.264" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/authorization_form.xml" value="0.17527173913043478" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/delete_activity_option.xml" value="0.536" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/delete_dialog_window.xml" value="0.536" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/delete_option.xml" value="0.2056159420289855" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/first_authorization_form.xml" value="0.536" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/main_menu_drawer.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/rc_view_shablon.xml" value="0.6" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/reg_form.xml" value="0.4" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/reg_form_first.xml" value="0.136" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/rw.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/tag_activity_edit.xml" value="0.6" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/tag_main_activity.xml" value="0.536" />
         <entry key="..\:/Users/Asus/AndroidStudioProjects/ToDoList/app/src/main/res/layout/theme_activity_option.xml" value="0.4" />

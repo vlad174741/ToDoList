@@ -20,6 +20,10 @@
         <item name="android:textColor">@color/gray_background</item>
     </style>
 
+    <style name="pin_button" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:backgroundTint"> @color/purple_200</item>
+    </style>
+
     <!-- теги activity_edit -->
     <style name="background_text_tag_create" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 

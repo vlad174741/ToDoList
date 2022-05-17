@@ -18,24 +18,32 @@ class Option : AppCompatActivity() {
 
     private var themeSet = 0
     private var deleteSet  = 1
-    private var authSet  = 1
+    private var authPINSet  = 1
     private var prefsTheme: SharedPreferences?=null
     private var prefsDelete: SharedPreferences?=null
-    private var prefsAuth: SharedPreferences?=null
+    private var prefsAuthPIN: SharedPreferences?=null
     private val save = SaveData()
+
+    var pin = ""
+    var prefPIN: SharedPreferences? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_option)
 
+        val authClass = Intent(this,Auth::class.java)
+        val main = Intent(this, MainActivity::class.java)
+
         //Сохранение настроек//
         fun saveTheme(res:Int){ save.saveDataInt(res,prefsTheme,"settingsTheme") }
         fun saveDelete(res:Int){ save.saveDataInt(res,prefsDelete,"settingsDelete") }
-        fun saveAuth(res:Int){ save.saveDataInt(res,prefsAuth,"settingsAuth") }
+        fun saveAuthPIN(res:Int){ save.saveDataInt(res,prefsAuthPIN,"settingsAuthPIN") }
 
-        prefsAuth = getSharedPreferences("settingsAuth", Context.MODE_PRIVATE)
-        authSet=prefsAuth?.getInt("settingsAuth",0)!!
+        fun savePIN(){ save.saveDataString("",prefPIN,"PIN") ; }
+
+        prefsAuthPIN = getSharedPreferences("settingsAuthPIN", Context.MODE_PRIVATE)
+        authPINSet=prefsAuthPIN?.getInt("settingsAuthPIN",0)!!
 
         prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
         deleteSet=prefsDelete?.getInt("settingsDelete",0)!!
@@ -43,22 +51,27 @@ class Option : AppCompatActivity() {
         prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
         themeSet=prefsTheme?.getInt("settingsTheme",0)!!
 
+        prefPIN = getSharedPreferences("PIN", Context.MODE_PRIVATE)
+        pin = prefPIN?.getString("PIN","")!!
+
 
         //Проверка выбранных настроек//
         ifElseCheck()
 
-        button_option_inAuto_no.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_option_inAuto_no.isChecked){authSet=0; saveAuth(0) }  })
+        button_option_PIN_no.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
+        {if (button_option_PIN_no.isChecked){authPINSet=0; saveAuthPIN(0) }  })
 
-        button_option_inAuto_yes.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        {if (button_option_inAuto_yes.isChecked){authSet=1; saveAuth(1) }  })
+        button_option_PIN_yes.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
+        {if (button_option_PIN_yes.isChecked){authPINSet=1; saveAuthPIN(1) }  })
+
+        button_option_PIN_change.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
+        {if (button_option_PIN_change.isChecked){saveAuthPIN(2) ; finishAffinity();  startActivity(authClass) }  })
 
 
 
         //Кнопка выхода из настройки//
         imageButton.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        { val option = Intent(this, MainActivity::class.java); startActivity(option)
-            saveTheme(themeSet);saveDelete(deleteSet) })
+        { startActivity(main);finishAffinity()})
 
         //Настройки темы//
         button_system_theme.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
@@ -88,8 +101,8 @@ class Option : AppCompatActivity() {
         if (deleteSet==0){button_option_delete_no.isChecked=true}
         if (deleteSet==1){button_option_delete_yes.isChecked=true}
 
-        if (authSet==1){button_option_inAuto_yes.isChecked=true}
-        if (authSet==0){button_option_inAuto_no.isChecked=true}
+        if (authPINSet==1){button_option_PIN_yes.isChecked=true}
+        if (authPINSet==0){button_option_PIN_no.isChecked=true}
     }
 }
 

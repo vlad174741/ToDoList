@@ -7,32 +7,35 @@
     tools:context=".Option">
 
     <include
+        android:id="@+id/include2"
         layout="@layout/theme_activity_option"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <include
+        android:id="@+id/include"
         layout="@layout/delete_activity_option"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
 
     <include
         layout="@layout/login_pin_activity_option"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <TextView
         android:id="@+id/textView5"
