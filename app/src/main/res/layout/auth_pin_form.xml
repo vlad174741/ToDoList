@@ -3,4 +3,280 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    style="@style/auth_background">
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        style="@style/pin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusableInTouchMode="false"
+        android:foreground="@drawable/ic__number_button_1"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton4"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusableInTouchMode="false"
+        android:foreground="@drawable/ic__number_button_2"
+        android:foregroundTintMode="src_in"
+        android:src="@drawable/ic__number_button_2"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_3"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton6"
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton2"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton4"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton5"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton5"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton6"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton5"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton7"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_7"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton8"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton4"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton8"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton5"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton9"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:foreground="@drawable/ic__number_button_9"
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton8"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton6"
+        android:focusable="true"
+        tools:ignore="UnusedAttribute"
+        android:contentDescription="@string/todo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonOk"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
+        android:foreground="@drawable/ic__number_button_ok"
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton0"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton9"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton0"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
+        android:foreground="@drawable/ic__number_button_0"
+        app:backgroundTint="@color/gray_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton8"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonNo"
+        style="@style/pin_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:focusable="true"
+        android:foreground="@drawable/ic__number_button_no"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton0"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton7"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/textViewPin"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:letterSpacing="1.3"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:textColor="@color/single_color"
+        android:textScaleX="1"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewPin"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPin"
+        app:srcCompat="@drawable/ic_line"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPin"
+        app:srcCompat="@drawable/ic_line"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPin"
+        app:srcCompat="@drawable/ic_line"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPin"
+        app:srcCompat="@drawable/ic_line"
+        android:contentDescription="@string/todo"  />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

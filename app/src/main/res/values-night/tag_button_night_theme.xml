@@ -159,4 +159,8 @@
 
     </style>
 
+    <style name="pin_button" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:backgroundTint"> @color/gray_background</item>
+    </style>
+
 </resources>

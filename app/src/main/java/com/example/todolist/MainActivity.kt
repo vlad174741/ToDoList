@@ -1,7 +1,6 @@
 package com.example.todolist
 
 import android.annotation.SuppressLint
-import android.content.ClipData
 import dataBase.DbManagerClass
 import android.content.Context
 import android.content.Intent
@@ -10,17 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Layout
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
-import androidx.appcompat.view.menu.MenuItemImpl
-import androidx.appcompat.view.menu.MenuView
-import androidx.appcompat.widget.MenuItemHoverListener
-import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -52,7 +43,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var themeSet = 4
     private var deleteSet = 1
     private var authWithoutRegSet = 0
+    private var authWithPINSet = 0
 
+    var prefsAuthWithPIN: SharedPreferences? = null
     private var prefsTheme: SharedPreferences? = null
     private var prefsDelete: SharedPreferences? = null
     private var prefsAuthWithoutReg: SharedPreferences? = null
@@ -75,6 +68,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //Сохранение настроек удаления//
         prefsDelete = getSharedPreferences("settingsDelete", Context.MODE_PRIVATE)
         deleteSet = prefsDelete?.getInt("settingsDelete", 0)!!
+
+        prefsAuthWithPIN = getSharedPreferences("settingsAuthPIN", Context.MODE_PRIVATE)
+        authWithPINSet = prefsAuthWithPIN?.getInt("settingsAuthPIN",0)!!
 
         prefsAuthWithoutReg = getSharedPreferences("settingsAuthWithoutReg", Context.MODE_PRIVATE)
         authWithoutRegSet = prefsAuthWithoutReg?.getInt("settingsAuthWithoutReg", 0)!!
@@ -116,6 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.id_menu_logOut -> {
                 save.saveDataInt(0,prefsAuthWithoutReg,"settingsAuthWithoutReg")
+                save.saveDataInt(0,prefsAuthWithPIN,"settingsAuthPIN")
                 finish()
                 startActivity(logout)
             }

@@ -17,6 +17,9 @@ class RegistrationForm: AppCompatActivity() {
     private var prefsAuth: SharedPreferences? = null
     private var prefsPass: SharedPreferences? = null
     private var prefsTheme: SharedPreferences? = null
+    private var prefsAuthWithPIN: SharedPreferences? = null
+
+    private var authWithPINSet = 0
     private var themeSet = 4
     private val save = SaveData()
 
@@ -42,6 +45,10 @@ class RegistrationForm: AppCompatActivity() {
 
         prefsPass = getSharedPreferences("pass", Context.MODE_PRIVATE)
         pass = prefsPass?.getString("pass", "empty")!!
+
+        prefsAuthWithPIN = getSharedPreferences("settingsAuthPIN", Context.MODE_PRIVATE)
+        authWithPINSet = prefsAuthWithPIN?.getInt("settingsAuthPIN",0)!!
+
         registration()
 
 
@@ -84,6 +91,7 @@ class RegistrationForm: AppCompatActivity() {
                 if (edLoginFirsForm.text.isNotEmpty()) {
                     if (edPassFirstForm.text.isNotEmpty()) {
                         saveLoginAndPass()
+                        save.saveDataInt(0,prefsAuthWithPIN,"settingsAuthPIN")
                     }
                     else{ Toast.makeText(this, "Введите новый пароль", Toast.LENGTH_SHORT).show() }
 
@@ -99,6 +107,8 @@ class RegistrationForm: AppCompatActivity() {
 
                                 if(edLoginOldForm.text.toString() == login && edPassOldForm.text.toString() == pass) {
                                     saveLoginAndPass()
+                                    save.saveDataInt(0,prefsAuthWithPIN,"settingsAuthPIN")
+
                                 }
                                 else{ Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show() }
 
