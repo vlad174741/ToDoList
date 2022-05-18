@@ -5,7 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import dataBase.DbManagerClass
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.delete_activity_option.*
 import kotlinx.android.synthetic.main.login_pin_activity_option.*
@@ -16,16 +19,23 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @DelicateCoroutinesApi
 class Option : AppCompatActivity() {
 
+
     private var themeSet = 0
-    private var deleteSet  = 1
-    private var authPINSet  = 1
     private var prefsTheme: SharedPreferences?=null
+
+    private var deleteSet  = 1
     private var prefsDelete: SharedPreferences?=null
+
+    private var authPINSet  = 1
     private var prefsAuthPIN: SharedPreferences?=null
+
+    private val dbManager = DbManagerClass(this)
     private val save = SaveData()
 
-    var pin = ""
-    var prefPIN: SharedPreferences? = null
+
+    private var delayForFinish = false
+    private val handler = Handler(Looper.getMainLooper())
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +50,6 @@ class Option : AppCompatActivity() {
         fun saveDelete(res:Int){ save.saveDataInt(res,prefsDelete,"settingsDelete") }
         fun saveAuthPIN(res:Int){ save.saveDataInt(res,prefsAuthPIN,"settingsAuthPIN") }
 
-        fun savePIN(){ save.saveDataString("",prefPIN,"PIN") ; }
 
         prefsAuthPIN = getSharedPreferences("settingsAuthPIN", Context.MODE_PRIVATE)
         authPINSet=prefsAuthPIN?.getInt("settingsAuthPIN",0)!!
@@ -51,8 +60,7 @@ class Option : AppCompatActivity() {
         prefsTheme = getSharedPreferences("settingsTheme", Context.MODE_PRIVATE)
         themeSet=prefsTheme?.getInt("settingsTheme",0)!!
 
-        prefPIN = getSharedPreferences("PIN", Context.MODE_PRIVATE)
-        pin = prefPIN?.getString("PIN","")!!
+
 
 
         //Проверка выбранных настроек//
@@ -104,6 +112,15 @@ class Option : AppCompatActivity() {
         if (authPINSet==1){button_option_PIN_yes.isChecked=true}
         if (authPINSet==0){button_option_PIN_no.isChecked=true}
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dbManager.closeDB()
+        if (themeSet>0){handler.postDelayed({delayForFinish=true},0)}
+        else{finishAffinity()}
+        if (delayForFinish){finishAffinity()}
+    }
+
 }
 
 

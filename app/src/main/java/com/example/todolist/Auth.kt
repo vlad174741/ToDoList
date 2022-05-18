@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -13,38 +15,43 @@ import kotlinx.android.synthetic.main.auth_pin_form.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class Auth: AppCompatActivity() {
-    private var login = "empty"
-    private var pass = "empty"
+
 
     private var themeSet = 0
-    private var authWithPINSet = 0
-    private var authWithoutRegSet = 0
-    private var authRememberMe = 0
-
-    private var prefsAuthWithPIN: SharedPreferences? = null
-    private var prefsAuthRememberMe: SharedPreferences? = null
-    private var prefsAuthWithoutReg: SharedPreferences? = null
-    private var prefsPass: SharedPreferences? = null
     private var prefsTheme: SharedPreferences? = null
+
+    private var authWithPINSet = 0
+    private var prefsAuthWithPIN: SharedPreferences? = null
+
+    private var authWithoutRegSet = 0
+    private var prefsAuthWithoutReg: SharedPreferences? = null
+
+    private var authRememberMe = 0
+    private var prefsAuthRememberMe: SharedPreferences? = null
+
+    private var pass = "empty"
+    private var prefsPass: SharedPreferences? = null
+
+    private var login = "empty"
     private var prefsLogin: SharedPreferences? = null
 
     private val save = SaveData()
     private val theme = ChangeTheme()
-
-    var pin = ""
-    var prefPIN: SharedPreferences? = null
+    private val toastText = ToastText()
 
 
+    private var pin = ""
+    private var prefPIN: SharedPreferences? = null
 
+
+    private var delayForFinish = false
+    private val handler = Handler(Looper.getMainLooper())
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.authorization_form)
-
-
-
     }
 
     override fun onResume(){
@@ -72,7 +79,6 @@ class Auth: AppCompatActivity() {
 
         prefPIN = getSharedPreferences("PIN", Context.MODE_PRIVATE)
         pin = prefPIN?.getString("PIN","")!!
-
 
         theme.themeChange(themeSet,delegate)
         authorization()
@@ -110,69 +116,88 @@ class Auth: AppCompatActivity() {
 
 
 
-        if (authWithPINSet == 1){
+        if (authWithPINSet > 0){
             firstAuth.visibility=View.GONE; pinAuth.visibility = View.VISIBLE
             authorizationPIN()
+        }else {
+
+            if (login == "empty" && pass == "empty") {
+
+                if (authWithoutRegSet == 1) {
+                    finish(); startActivity(main)
+                }
+
+
+                singInWithoutReg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+                {
+                    save.saveDataInt(
+                        1,
+                        prefsAuthWithoutReg,
+                        "settingsAuthWithoutReg"
+                    ); onResume()
+                })
+
+                firstReg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+                { startActivity(reg) })
+
+                firstRegPin.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+                { startActivity(pin) })
+            } else {
+                firstAuth.visibility = View.GONE
+                secondAuth.visibility = View.VISIBLE
+
+                if (authRememberMe == 1) { edLogin.setText(login) }
+
+                rememberMeCheck.isChecked = authRememberMe == 1 /*if(authSet==1){remMe.isChecked=true}else{remMe.isChecked=false}*/
+
+                regAgain.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+                { startActivity(reg) })
+
+                singIn.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
+                {
+                    if (edLogin.text.isNotEmpty()) {
+
+                        if (edPass.text.isNotEmpty()) {
+
+                            if (edLogin.text.toString() == login && edPass.text.toString() == pass) {
+
+                                authRememberMe = if (rememberMeCheck.isChecked) {
+                                    1
+                                } else {
+                                    0
+                                } /*if (rememberMeCheck.isChecked){authRememberMe=1} else{authRememberMe=0}*/
+                                save.saveDataInt(
+                                    authRememberMe,
+                                    prefsAuthRememberMe,
+                                    "settingsAuthRemMe"
+                                )
+                                startActivity(main)
+                                finish()
+                            } else {
+                                toastText.toastTextShort("Неверный логин или пароль",this)
+                            }
+                        } else {
+                            toastText.toastTextShort("Введите пароль",this)
+                        }
+                    } else {
+                        toastText.toastTextShort("Введите логин",this)
+                    }
+
+                })
+            }
         }
-        if (authWithPINSet == 2){
-            firstAuth.visibility=View.GONE; pinAuth.visibility = View.VISIBLE
-            authorizationPIN()
-        }
 
-        fun toastText(res:String) { Toast.makeText(this, res, Toast.LENGTH_SHORT).show() }
-
-
-
-        if(login == "empty" && pass == "empty"){
-
-            if (authWithoutRegSet==1){finish(); startActivity(main) }
-
-
-            singInWithoutReg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-            { save.saveDataInt(1,prefsAuthWithoutReg,"settingsAuthWithoutReg"); onResume()})
-
-            firstReg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-            { startActivity(reg) })
-
-            firstRegPin.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-            {startActivity(pin) })
-        }else{
-            firstAuth.visibility = View.GONE
-            secondAuth.visibility = View.VISIBLE
-
-            if(authRememberMe==1){edLogin.setText(login)}
-            rememberMeCheck.isChecked = authRememberMe==1 /*if(authSet==1){remMe.isChecked=true}else{remMe.isChecked=false}*/
-
-            regAgain.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-            {startActivity(reg) })
-
-            singIn.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
-            {
-                if (edLogin.text.isNotEmpty()){
-
-                    if (edPass.text.isNotEmpty()) {
-
-                        if (edLogin.text.toString() == login && edPass.text.toString() == pass) {
-
-                            authRememberMe = if (rememberMeCheck.isChecked){ 1 } else{ 0 } /*if (rememberMeCheck.isChecked){authRememberMe=1} else{authRememberMe=0}*/
-                            save.saveDataInt(authRememberMe,prefsAuthRememberMe,"settingsAuthRemMe")
-                            startActivity(main)
-                            finish()
-                        } else { toastText("Неверный логин или пароль") }
-                    }else{ toastText("Введите пароль") }
-                }else{ toastText("Введите логин") }
-
-            })
-        }
     }
 
-    fun authorizationPIN(){
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun  authorizationPIN(){
+
 
 
         val main = Intent(this, MainActivity::class.java)
         val auth = Intent(this, Auth::class.java)
 
-        textView8.text=authWithPINSet.toString()
+        textView8.text=pin
 
 
         fun saveDataAuthPIN(res:Int) { save.saveDataInt(res, prefsAuthWithPIN, "settingsAuthPIN") }
@@ -180,6 +205,7 @@ class Auth: AppCompatActivity() {
         fun saveDataPIN(res:String) { save.saveDataString(res, prefPIN, "PIN") }
 
         fun toastText(res:String) { Toast.makeText(this, res, Toast.LENGTH_SHORT).show() }
+
 
         if (authWithPINSet==2){saveDataAuthPIN(1)}
 
@@ -196,6 +222,8 @@ class Auth: AppCompatActivity() {
         val buttonNumberOK = findViewById<FloatingActionButton>(R.id.floatingActionButtonOk)
         val buttonNumberNO = findViewById<FloatingActionButton>(R.id.floatingActionButtonNo)
         val textViewPIN = findViewById<TextView>(R.id.textViewPin)
+
+        fun buttonClickable(){ buttonNumberOK.isClickable=false; buttonNumberNO.isClickable=false}
 
 
         buttonNumber.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
@@ -242,7 +270,7 @@ class Auth: AppCompatActivity() {
             if (authWithPINSet==2){
 
                 if (textViewPIN.text.length == 4)
-                {
+                {   buttonClickable()
                     pin = textViewPIN.text.toString()
                     saveDataPIN(pin)
                     finish()
@@ -254,6 +282,7 @@ class Auth: AppCompatActivity() {
 
                 if (pin == "") {
                     if (textViewPIN.text.length == 4) {
+                        buttonClickable()
                         pin = textViewPIN.text.toString()
                         saveDataAuthPIN(1)
                         saveDataPIN(pin)
@@ -264,6 +293,7 @@ class Auth: AppCompatActivity() {
 
                     if (textViewPIN.text.length == 4) {
                         if (textViewPIN.text.toString() == pin) {
+                            buttonClickable()
                             saveDataAuthPIN(1)
                             startActivity(main)
                             finishAffinity()
@@ -279,6 +309,9 @@ class Auth: AppCompatActivity() {
 
     }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        if (themeSet>0){handler.postDelayed({delayForFinish=true},0)}
+        else{finishAffinity()}
+        if (delayForFinish==true){finishAffinity()}}
 }

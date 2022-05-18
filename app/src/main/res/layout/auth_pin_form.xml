@@ -7,7 +7,6 @@
     style="@style/auth_background">
 
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         style="@style/pin_button"

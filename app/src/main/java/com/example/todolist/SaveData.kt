@@ -2,6 +2,7 @@ package com.example.todolist
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.SharedPreferencesCompat
 
 
 class SaveData {
@@ -20,7 +21,7 @@ class SaveData {
         editorAuth?.putInt(key, res)
         editorAuth?.apply()
 
-    }
 
+    }
 
 }
