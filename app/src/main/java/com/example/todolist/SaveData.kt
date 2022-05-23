@@ -1,8 +1,6 @@
 package com.example.todolist
 
-import android.content.Context
 import android.content.SharedPreferences
-import androidx.core.content.SharedPreferencesCompat
 
 
 class SaveData {

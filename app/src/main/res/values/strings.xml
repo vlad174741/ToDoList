@@ -32,6 +32,10 @@
     <string name="ChangePass">Сменить пароль</string>
     <string name="login_PIN">Вход через ПИН код</string>
     <string name="change_PIN">Изменить ПИН</string>
+    <string name="rememberMe">Запомнить меня</string>
+    <string name="usePinCode">Использовать ПИН код</string>
+    <string name="delete_mani">Удалить несколько</string>
+    <string name="do_you_whant_delete">Вы действительно хотите \n удалить заметку?</string>
 
 
     <string-array name="title"

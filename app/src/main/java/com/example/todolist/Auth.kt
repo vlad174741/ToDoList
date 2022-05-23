@@ -6,12 +6,14 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.todolist.databinding.AuthorizationFormBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.auth_pin_form.*
+import kotlinx.android.synthetic.main.authorization_form.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class Auth: AppCompatActivity() {
@@ -47,14 +49,16 @@ class Auth: AppCompatActivity() {
     private var delayForFinish = false
     private val handler = Handler(Looper.getMainLooper())
 
+    lateinit var binding: AuthorizationFormBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = AuthorizationFormBinding.inflate(LayoutInflater.from(this))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.authorization_form)
     }
 
-    override fun onResume(){
+    override fun onResume() {
         super.onResume()
 
         //Принятие значений переменных с экрана Option//
@@ -197,7 +201,10 @@ class Auth: AppCompatActivity() {
         val main = Intent(this, MainActivity::class.java)
         val auth = Intent(this, Auth::class.java)
 
-        textView8.text=pin
+        val testTextPin = findViewById<TextView>(R.id.textView8)
+
+
+        testTextPin.text=pin
 
 
         fun saveDataAuthPIN(res:Int) { save.saveDataInt(res, prefsAuthWithPIN, "settingsAuthPIN") }
