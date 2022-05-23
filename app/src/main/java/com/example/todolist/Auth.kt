@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.todolist.databinding.AuthorizationFormBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.authorization_form.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class Auth: AppCompatActivity() {

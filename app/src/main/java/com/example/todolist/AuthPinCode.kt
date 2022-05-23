@@ -6,10 +6,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.auth_pin_form.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 class AuthPinCode: AppCompatActivity() {
@@ -51,13 +49,15 @@ class AuthPinCode: AppCompatActivity() {
         val main = Intent(this, MainActivity::class.java)
         val auth = Intent(this, Auth::class.java)
 
-        textView8.text=pin
+        var tvTest = findViewById<TextView>(R.id.textView8)
+
+        tvTest.text=pin
 
 
         fun saveDataAuthPIN(res:Int) { save.saveDataInt(res, prefsAuthWithPIN, "settingsAuthPIN") }
 
         fun saveDataPIN(res:String) { save.saveDataString(res, prefPIN, "PIN") }
-        
+
 
         if (authWithPINSet==2){saveDataAuthPIN(1)}
 
