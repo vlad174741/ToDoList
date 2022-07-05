@@ -5,22 +5,22 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.auth_pin_form.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class AuthPinCode: AppCompatActivity() {
 
-    var pin = ""
-    var prefPIN: SharedPreferences? = null
+    private var pin = ""
+    private var prefPIN: SharedPreferences? = null
 
-    var authWithPINSet = 0
-    var prefsAuthWithPIN: SharedPreferences? = null
+    private var authWithPINSet = 0
+    private var prefsAuthWithPIN: SharedPreferences? = null
 
-    val save= SaveData()
+    private val save= SaveData()
+    private val toastText = ToastText()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,20 +41,23 @@ class AuthPinCode: AppCompatActivity() {
 
 
 
+
+    @OptIn(DelicateCoroutinesApi::class)
     fun authorizationPIN(){
 
 
         val main = Intent(this, MainActivity::class.java)
         val auth = Intent(this, Auth::class.java)
 
-        textView8.text=authWithPINSet.toString()
+        var tvTest = findViewById<TextView>(R.id.textView8)
+
+        tvTest.text=pin
 
 
         fun saveDataAuthPIN(res:Int) { save.saveDataInt(res, prefsAuthWithPIN, "settingsAuthPIN") }
 
         fun saveDataPIN(res:String) { save.saveDataString(res, prefPIN, "PIN") }
 
-        fun toastText(res:String) { Toast.makeText(this, res, Toast.LENGTH_SHORT).show() }
 
         if (authWithPINSet==2){saveDataAuthPIN(1)}
 
@@ -71,6 +74,8 @@ class AuthPinCode: AppCompatActivity() {
         val buttonNumberOK = findViewById<FloatingActionButton>(R.id.floatingActionButtonOk)
         val buttonNumberNO = findViewById<FloatingActionButton>(R.id.floatingActionButtonNo)
         val textViewPIN = findViewById<TextView>(R.id.textViewPin)
+
+        fun buttonClickable(){ buttonNumberOK.isClickable=false; buttonNumberNO.isClickable=false}
 
 
         buttonNumber.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
@@ -117,34 +122,36 @@ class AuthPinCode: AppCompatActivity() {
             if (authWithPINSet==2){
 
                 if (textViewPIN.text.length == 4)
-                {
+                {   buttonClickable()
                     pin = textViewPIN.text.toString()
                     saveDataPIN(pin)
                     finish()
                     startActivity(auth)
                 }
-                else { toastText("Введите 4 символа") }
+                else { toastText.toastTextShort("Введите 4 символа",this) }
 
             }else {
 
                 if (pin == "") {
                     if (textViewPIN.text.length == 4) {
+                        buttonClickable()
                         pin = textViewPIN.text.toString()
                         saveDataAuthPIN(1)
                         saveDataPIN(pin)
                         finish()
-                    } else { toastText("Введите 4 символа") }
+                    } else { toastText.toastTextShort("Введите 4 символа",this)  }
 
                 } else {
 
                     if (textViewPIN.text.length == 4) {
                         if (textViewPIN.text.toString() == pin) {
+                            buttonClickable()
                             saveDataAuthPIN(1)
                             startActivity(main)
                             finishAffinity()
-                        } else { toastText("Неверный ПИН код") }
+                        } else { toastText.toastTextShort("Неверный ПИН код",this) }
 
-                    }else{toastText("Введите 4 символа")}
+                    }else{toastText.toastTextShort("Введите 4 символа",this) }
                 }
             }
         })
@@ -153,6 +160,8 @@ class AuthPinCode: AppCompatActivity() {
 
 
     }
+
+    override fun onDestroy() { super.onDestroy(); finish() }
 
 
 

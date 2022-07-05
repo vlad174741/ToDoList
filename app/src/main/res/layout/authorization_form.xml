@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/sing_in"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editText_password"
+            app:layout_constraintStart_toStartOf="@+id/editText_password"
             app:layout_constraintTop_toBottomOf="@+id/editText_password" />
 
 
@@ -36,9 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/registration"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button_singIn"
+            app:layout_constraintStart_toStartOf="@+id/button_singIn"
             app:layout_constraintTop_toBottomOf="@+id/button_singIn" />
 
 
@@ -64,8 +63,8 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editText_login"
+            app:layout_constraintStart_toStartOf="@+id/editText_login"
             app:layout_constraintTop_toBottomOf="@+id/editText_login"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
@@ -75,9 +74,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Запомнить меня"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/rememberMe"
+            app:layout_constraintEnd_toEndOf="@+id/button_reg"
+            app:layout_constraintStart_toStartOf="@+id/button_reg"
             app:layout_constraintTop_toBottomOf="@+id/button_reg" />
 
 
@@ -100,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Использовать ПИН код"
+            android:text="@string/usePinCode"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
@@ -412,7 +411,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

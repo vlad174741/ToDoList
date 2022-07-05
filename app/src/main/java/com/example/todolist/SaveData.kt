@@ -1,6 +1,5 @@
 package com.example.todolist
 
-import android.content.Context
 import android.content.SharedPreferences
 
 
@@ -20,7 +19,7 @@ class SaveData {
         editorAuth?.putInt(key, res)
         editorAuth?.apply()
 
-    }
 
+    }
 
 }

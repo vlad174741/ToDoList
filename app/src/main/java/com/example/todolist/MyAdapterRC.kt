@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dataBase.DbManagerClass
 import dataBase.ListItemDB
 import dataBase.MyIntentConstant
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context):
     RecyclerView.Adapter<MyAdapterRC.MyViewHolder>() {
@@ -19,10 +20,12 @@ class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context
     private var listArray = listMain
     class MyViewHolder(itemView: View, private val contextVH: Context) :
         RecyclerView.ViewHolder(itemView) {
+
         private val titleTextView: TextView = itemView.findViewById(R.id.tv_title_rc)
         private val tvTime: TextView = itemView.findViewById(R.id.tv_time_rc)
         private val ivIcon: ImageView = itemView.findViewById(R.id.iv_icon_rc)
 
+        @OptIn(DelicateCoroutinesApi::class)
         fun setData(item: ListItemDB){
             titleTextView.text = item.titleLI
             tvTime.text = item.time
@@ -67,8 +70,8 @@ class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context)
-        return MyViewHolder(itemView.inflate(R.layout.rc_view_shablon, parent, false), contextRC)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rc_view_pattern, parent, false)
+        return MyViewHolder(itemView, contextRC)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
