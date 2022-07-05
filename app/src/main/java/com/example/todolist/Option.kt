@@ -31,8 +31,6 @@ class Option : AppCompatActivity() {
     private val save = SaveData()
 
 
-    private var delayForFinish = false
-    private val handler = Handler(Looper.getMainLooper())
 
     lateinit var binding: ActivityOptionBinding
 
@@ -78,7 +76,7 @@ class Option : AppCompatActivity() {
 
         //Кнопка выхода из настройки//
         binding.imageButton.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
-        { startActivity(main);finishAffinity()})
+        { startActivity(main);finish()})
 
         //Настройки темы//
         binding.buttonSystemTheme.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
@@ -94,6 +92,7 @@ class Option : AppCompatActivity() {
         binding.buttonOptionDeleteNo.setOnClickListener(@Suppress("UNUSED_PARAMETER")View.OnClickListener
         { if (binding.buttonOptionDeleteNo.isChecked){deleteSet=0; saveDelete(0) }  })
     }
+
 
     //Функция для изменения темы//
     private fun themeChange(){ val theme = ChangeTheme();theme.themeChange(themeSet,delegate)}
@@ -115,9 +114,6 @@ class Option : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         dbManager.closeDB()
-        if (themeSet>=0){handler.postDelayed({delayForFinish=true},0)}
-        else{finishAffinity()}
-        if (delayForFinish){finishAffinity()}
     }
 
 }

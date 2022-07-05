@@ -353,5 +353,4 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

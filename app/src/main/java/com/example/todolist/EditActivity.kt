@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.todolist.databinding.ActivityEditBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -84,8 +85,10 @@ class EditActivity : AppCompatActivity() {
 
     fun onClickSave(@Suppress("UNUSED_PARAMETER")view: View) {
 
+
         val titleFull = binding.edTitle.text.toString()
         val contentFull = binding.edContent.text.toString()
+
 
         if (titleFull != "") {
 
@@ -98,6 +101,7 @@ class EditActivity : AppCompatActivity() {
                 dbManager.insertToDb(titleFull, contentFull, urlImgDb, getTime(), tagIntent)
             }
             finish()
+
         }
     }
 
@@ -202,7 +206,13 @@ class EditActivity : AppCompatActivity() {
 
 
     //Закрытие окна//
-    override fun onDestroy() { super.onDestroy(); dbManager.closeDB() }
+    override fun onDestroy() {
+
+        super.onDestroy()
+        dbManager.closeDB()
+        finish()
+
+    }
 
 
 }

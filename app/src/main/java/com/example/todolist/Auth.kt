@@ -57,6 +57,7 @@ class Auth: AppCompatActivity() {
         setContentView(R.layout.authorization_form)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onResume() {
         super.onResume()
 
@@ -82,9 +83,15 @@ class Auth: AppCompatActivity() {
 
         prefPIN = getSharedPreferences("PIN", Context.MODE_PRIVATE)
         pin = prefPIN?.getString("PIN","")!!
-
         theme.themeChange(themeSet,delegate)
-        authorization()
+
+        if (authWithoutRegSet == 1) {
+            val main = Intent(this, MainActivity::class.java)
+            startActivity(main)
+            finishAffinity()
+        }else{theme.themeChange(themeSet,delegate);authorization()}
+
+
 
 
     }
@@ -118,17 +125,12 @@ class Auth: AppCompatActivity() {
         val edPass = findViewById<EditText>(R.id.editText_password)
 
 
-
         if (authWithPINSet > 0){
             firstAuth.visibility=View.GONE; pinAuth.visibility = View.VISIBLE
             authorizationPIN()
         }else {
 
             if (login == "empty" && pass == "empty") {
-
-                if (authWithoutRegSet == 1) {
-                    finish(); startActivity(main)
-                }
 
 
                 singInWithoutReg.setOnClickListener(@Suppress("UNUSED_PARAMETER") View.OnClickListener
@@ -279,7 +281,7 @@ class Auth: AppCompatActivity() {
                 {   buttonClickable()
                     pin = textViewPIN.text.toString()
                     saveDataPIN(pin)
-                    finish()
+                    finishAffinity()
                     startActivity(auth)
                 }
                 else { toastText("Введите 4 символа") }
@@ -317,7 +319,6 @@ class Auth: AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (themeSet>0){handler.postDelayed({delayForFinish=true},0)}
-        else{finishAffinity()}
-        if (delayForFinish==true){finishAffinity()}}
+
+    }
 }

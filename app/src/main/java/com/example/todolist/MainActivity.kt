@@ -17,7 +17,7 @@ import android.widget.RadioButton
 import android.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.databinding.MainMenuDrawerBinding
+import com.example.todolist.databinding.MainActivityBinding
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.*
 import java.util.*
@@ -54,13 +54,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val handler = Handler(Looper.getMainLooper())
 
-    lateinit var binding:MainMenuDrawerBinding
+    lateinit var binding:MainActivityBinding
+
+    private val theme = ChangeTheme()
+
+
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        binding = MainMenuDrawerBinding.inflate(LayoutInflater.from(this))
+        binding = MainActivityBinding.inflate(LayoutInflater.from(this))
 
         super.onCreate(savedInstanceState)
 
@@ -82,7 +86,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         authWithoutRegSet = prefsAuthWithoutReg?.getInt("settingsAuthWithoutReg", 0)!!
 
 
-
     }
 
     //Обновление//
@@ -96,6 +99,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         chekItem(""); chekItemTag()
         checkDelete()
         tagClick()
+
+
     }
 
     //Меню//
@@ -108,6 +113,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.id_menu_settings -> {
                 startActivity(option)
+                binding.drawerLayout.close()
+
+
+
             }
 
             R.id.id_menu_reg -> {
@@ -145,6 +154,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         rcView.setHasFixedSize(true)
 
         addButton.isClickable = true
+        binding.navViewMenu.checkedItem?.setChecked(false)
+
+
 
 
 
@@ -417,8 +429,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+
+
     //Закрытие окна//
-    override fun onDestroy() { super.onDestroy() ; dbManager.closeDB()}
+    override fun onDestroy() { super.onDestroy() ; dbManager.closeDB() }
 
 }
 

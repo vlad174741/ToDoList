@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dataBase.DbManagerClass
 import dataBase.ListItemDB
 import dataBase.MyIntentConstant
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context):
     RecyclerView.Adapter<MyAdapterRC.MyViewHolder>() {
@@ -24,6 +25,7 @@ class MyAdapterRC(listMain:ArrayList<ListItemDB>, private var contextRC: Context
         private val tvTime: TextView = itemView.findViewById(R.id.tv_time_rc)
         private val ivIcon: ImageView = itemView.findViewById(R.id.iv_icon_rc)
 
+        @OptIn(DelicateCoroutinesApi::class)
         fun setData(item: ListItemDB){
             titleTextView.text = item.titleLI
             tvTime.text = item.time
